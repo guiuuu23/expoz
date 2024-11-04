@@ -1,33 +1,195 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Contactez-moi</h1>
-    </header>
+@charset "utf-8";
+
+/* ==== Style de page d'index ==== */
+.indexbody {
+	background-color:#fcfcff;
+	background-image: url("fond_blue_band.png");
+	background-position:left top;
+	background-repeat:repeat-y;
+    color:#000000;
+}
+.indexbody a:link { color:#000000;}
+.indexbody a:visited { color:#000000;}
+.indexbody a:active { color:#000000;}
+
+/* ==== Style de page de score ==== */
+.scorebody {
+	background-color:#FFFFFF;
+	background-image: url("fond_yellow_band.png");
+	background-position:left top;
+	background-repeat:repeat-y;
+	margin-left: 2px;
+	margin-right: 2px;
+    color:#000000;
+}
+.scorebody a:link { color:#0000CC;}
+.scorebody a:visited { color:#0000CC;}
+.scorebody a:active { color:#0000CC;}
+.scorebody input { font-size: 100%;}
+.scorebody input[type="checkbox"] { margin-bottom: 0.7em; }
+.scorebody input[type="radio"] { margin-bottom: 0.3em; }
+
+/* ==== Styles pour la page d'un score ==== */
+.scoretitle_title { /* Titre principal */
+	font-weight: bolder;
+	font-size: 1.5em;
+	text-align: center;
+	color: #0000FF;
+}
+.scoretitle_image { /* Image du titre, imbriquée avec .scoretitle_title */
+	width: 2em;
+	height: 2em;
+	vertical-align: middle;
+	text-align: center;
+}
+.scoretitle_separator { /* Séparateur du titre avec le corps du score, imbriqu�e avec .scoretitle_title */
+	color: #FF0000;
+}
+
+.score_result { /* Format de résultat de score */
+	text-align: center;
+	font-weight:bolder;
+	color: #990000;
+}
+
+.score_inter { /* Format du bloc Interprétation */
+	text-align:left;
+	font-size:smaller;
+	color: #006600;
+	font-style:italic;
+}
+
+.score_ref { /* Format du bloc Références */
+	text-align:left;
+	font-size:smaller;
+	color: #666666;
+	font-style:italic;
+}
+
+.score_note { /* Note en italique et plus petit */
+	font-size:smaller;
+	font-style:italic;
+}
+
+.score_tnm_title { /* Titre de la classification TNM */
+	font-weight: bolder;
+	font-size: 1.18em;
+	text-align: center;
+	color: #008800;
+}
+
+.score_table { /* Table standard utilisés dans les scores */
+    border-width: 0;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+}
+
+
+/* ==== Styles pour les index ==== */
+.idx_maintitle { /* Titres index alphabétique et par spécialité, base pour titre index principal */
+	font-weight: bolder;
+	font-size: 2em;
+	text-align: center;
+	color: #BD452F;
+	margin-left: .6em;
+	margin-right: .6em;
+	margin-bottom: .65em;
+}
+
+.idx_maintoidx { /* Liens vers les deux index */
+	font-weight: bold;
+	font-size: 1.25em;
+	text-align: center;
+	color: #B30785;
+	text-decoration: none;
+}
+
+.idx_alpha_chapter { /* Chapitre dans un index alphabétique */
+	font-size: xx-large;
+	font-weight:bolder;
+	text-align: left;
+	color: #B30785;
+	margin-top: .7em;
+}
+
+.idx_spe_chapter { /* Chapitre dans un index par spécialité */
+	font-size: larger;
+	font-weight:bolder;
+	text-align: left;
+	color: #B30785;
+	margin-top: 1.3em;
+}
+
+.idx_spe_img { /* Image de chapitre ds index par spécialités */
+	width:2.2em;
+	height:2.2em;
+	vertical-align:text-bottom;
+}
+
+.idx_close_all { /* Style d'affichage de l'item [Fermer Tout] */
+	color:#900;
+	font-size: medium;
+	font-weight:bold;
+}
+
+.idx_open_all { /* Style d'affichage de l'item [Ouvrir Tout] */
+	color:#070;
+	font-size: medium;
+	font-weight:bold;
+}
+
+.idx_lines { /* Lignes d'index, niveau <ul> */
+	line-height: 1.6em;
+	font-size: large;
+}
+.idx_lines a:link { text-decoration:none; }
+
+.idx_liline { /* Ligne d'index, niveau <li> */
+    padding-bottom:0.8em;
+	line-height: 1em;
+	font-size: large;
+}
+
+.idx_note { /* Note en italique et plus petit sur les index*/
+	font-size:70%;
+	font-style:italic;
+    display: block;
+    color: #666666;
+}
+
+.idx_image { /* Image spé dans index alphabétique */
+	width: 1.7em;
+	height: 1.7em;
+    float: left;
+    margin: 0.1em 0.2em 0 0;
+	vertical-align: top;
+	text-align: left;
+    border: 0;
+}
+
+@media all {
+    .footprint {
+        display: none;
+        text-align: center;
+        font-style: italic;
+    }
     
-    <main>
-        <form action="submit.html" method="POST">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
+    .footscreen {
+        display: block;
+        text-align: center;
+    }
+}
+@media print {
+    .footprint {
+        display: block;
+        text-align: center;
+        font-style: italic;
+    }
 
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-
-            <button type="submit">Envoyer</button>
-        </form>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Mon Site Web</p>
-    </footer>
-</body>
-</html>
+    .footscreen {
+        display: none;
+        text-align: center;
+    }
+}
