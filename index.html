@@ -1,34 +1,96 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculteur de score médicaux</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1></h1>
-        <p></p>
-    </header>
-    
-    <main>
-        <section class="projet">
-            <h2>Score de Wells</h2>
-            <p>Description du projet 1.</p>
-        </section>
-        <section class="projet">
-            <h2>Projet 2</h2>
-            <p>Description du projet 2.</p>
-        </section>
-        <section class="projet">
-            <h2>Projet 3</h2>
-            <p>Description du projet 3.</p>
-        </section>
-    </main>
+<title>Medicalcul - Score de Wells (E.P.) ~ Pneumologie</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript" src="_scripts.js"></script>
+<!-- <script type="text/javascript">f_ChooseCss();</script> -->
+<link rel="stylesheet" href="styles.css" />
 
-    <footer>
-        <p>&copy; 2024 Mon Portfolio</p>
-    </footer>
+<script type="text/javascript">
+// ===========================================================================================
+// Fonction de calcul de la page
+function f_Calculer()
+{
+	// calcul du résultat
+	var Res = 0;
+	for(var i=0; i<7; i++)
+		Res += f_GetRadioValue('vItem'+i)*1;
+
+	// Affichage du résultat
+	document.Form.Resultat.value = Res;
+	if(Res < 2)
+		document.Form.Probabilite.value = "Faible";
+	if(Res >= 2 && Res <= 7)
+		document.Form.Probabilite.value = "Intermédiaire";
+	if(Res > 7)
+		document.Form.Probabilite.value = "Forte";
+
+	try { MSSAndroidFunction.storeHistory("wellsep.html", "Score de Wells (E.P.)", "pneumologie", "Score:~Probabilité:", Res + "~" + document.Form.Probabilite.value); } catch(e) {}
+}
+// ======================================================================================
+</script>
+</head>
+
+<body class="scorebody">
+<p class="scoretitle_title">Score de Wells (E.P.)<br />
+<img src="zzimgspe_pneumologie.png" class="scoretitle_image"/><br />
+<span class="scoretitle_separator">-----</span></p>
+
+<form name="Form" id="Form">
+     <table class="score_table">
+      <tr>
+        <td valign="top"><input name="vItem0" id="vItem0" type="checkbox" value="1.5" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem0">Antécédent de thrombose veineuse profonde ou d'embolie pulmonaire.</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem1" id="vItem1" type="checkbox" value="1.5" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem1">Fréquence cardiaque &gt; 100/mn.</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem2"  id="vItem2" type="checkbox" value="1.5" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem2">Chirurgie récente ou immobilisation (moins d'un mois).</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem3" id="vItem3" type="checkbox" value="3" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem3">Signe de thrombose veineuse profonde.</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem4" id="vItem4" type="checkbox" value="3" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem4">Absence d'autre diagnostic ou diagnostic moins probable que l'E.P.</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem5" id="vItem5" type="checkbox" value="1" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem5">Hémoptysie.</label></td>
+      </tr>
+      <tr>
+        <td valign="top"><input name="vItem6" id="vItem6" type="checkbox" value="1" onclick="f_Calculer()" /></td>
+        <td valign="top"><label for="vItem6">Cancer évolutif ou en rémission depuis moins de 6 mois.</label></td>
+      </tr>
+    </table>
+
+<br />
+
+<hr width="80%"/>
+<p align="center"><input name="Submit" type="button" onclick="f_Calculer()" value="Calculer" /></p>
+<hr width="80%" />
+
+<p class="score_result">
+	Score : <input name="Resultat" type="text" id="Resultat" style="width:2.5em" readonly="readonly"/>
+</p>
+<p class="score_result">
+	Probabilité : <input name="Probabilite" type="text" id="Probabilite" style="width:7em" readonly="readonly"/>
+</p>
+
+</form>
+
+<p class="score_inter">Interprétation:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour un patient donné, le score permettant l'estimation de la probabilité clinique est obtenu en additionnant les points correspondants à chaque variable. La probabilité clinique est faible si le score est inférieur à 2. Elle est intermédiaire si le score est compris entre 2 et 6 inclus. Elle est forte si le score est supérieur ou égal à 7. Une embolie est « improbable » si le score est inférieur ou égal à 4. Une embolie est « probable » si le score est supérieur ou égal à 5.</p>
+
+<p class="score_ref">Références:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wells PS, Anderson DR, Rodger M, Stiell I, Dreyer JF, Barnes D, et al. Excluding pulmonary embolism at the bedside without diagnostic imaging : management of patients with suspected pulmonary embolism presenting to the emergency department by using a simple clinical model and d-dimer. Ann Intern Med 2001 17 ; 135 : 98-107.</p>
+
+<script type="text/javascript">include_footer();</script>
 </body>
 </html>
